@@ -14,33 +14,33 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.lab_4.R
 import com.example.lab_4.activities.RegisterActivity
+import com.example.lab_4.ui.about.AboutViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
+    private lateinit var homeViewModel: HomeViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        homeViewModel =
+            ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_home, container, false)
+//        val textView: TextView = root.findViewById(R.id.text_gallery)
+        val buttonRegister: Button = root.findViewById(R.id.btn_iniciar)
+        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+            //            textView.text = it
 
-        return inflater.inflate(R.layout.fragment_register, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // OTRA FORMA DE LLAMAR AL SIGUIENTE FRAGMENT
-        //btn_iniciar.setOnClickListener { Navigation.createNavigateOnClickListener(R.id.action_nav_home_to_nav_register) }
-//
-//        btn_iniciar.setOnClickListener {
-//            findNavController().navigate(R.id.action_nav_home_to_nav_register)
-//        }
-
-        // Llama a la actividad Register
-        
-        btn_iniciar.setOnClickListener {
-            activity?.let {
-                val intent = Intent(it, RegisterActivity::class.java)
-                it.startActivity(intent)
+            buttonRegister.setOnClickListener {
+                activity?.let {
+                    val intent = Intent(it, RegisterActivity::class.java)
+                    it.startActivity(intent)
+                }
             }
-        }
+        })
+        return root
     }
 }
