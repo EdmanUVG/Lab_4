@@ -39,6 +39,8 @@ class RegisterActivity : AppCompatActivity() {
 
         setSupportActionBar(findViewById(R.id.register_toolbar))
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         text_total.text = guestCount.toString() + " /8"
 
         showCurrentGuest(currentGuest)
