@@ -19,8 +19,7 @@
         <activity
             android:name=".activities.RegisterActivity"
             android:label="@string/text_registrando"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lab_4.MainActivity" />
